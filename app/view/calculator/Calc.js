@@ -14,26 +14,30 @@ Ext.define('CalculatorApp.view.calculator.Calc', {
     title: 'Reverse Polish Notation Calculator',
 
     layout: {
-        type: "table",
-        columns: 3
-    },
-
-    header: {
-        // Display screen for the calculator results
-        items: [{
-            xtype: 'displayfield',
-            fieldName: 'Result Screen',
-            name: 'calc_result',
-            colspan: 3
-        }]
+        type: "table", // https://docs.sencha.com/extjs/6.0/6.0.1-classic/#!/api/Ext.layout.container.Table
+        columns: 3,
+        tableAttrs: {
+            style: {
+                width: "240px"
+            }
+        }
     },
 
     defaults: {
         xtype: 'button',
-        handler: 'onNumberInput'
+        handler: 'onNumberInput',
+        width: "100%"
     },
 
     items: [{
+        xtype: 'displayfield',
+        value: 'test test test',
+        fieldName: 'Result screen',
+        name: 'calc_result',
+        colspan: 3
+    },
+
+    {
         text: '1'
     },
     {
@@ -61,11 +65,28 @@ Ext.define('CalculatorApp.view.calculator.Calc', {
         text: '9'
     },
     {
-        text: '0',
-        colspan: 3
+        text: '0'
+    },
+    {
+        text: '.'
+    }, 
+    {
+        text: "C"
+    },
+    {
+        text: "Enter",
+        colspan: 2
+    },
+    {
+        text: "+"
+    }, 
+    {
+        text: "-"
+    },
+    {
+        text: "X"
+    },
+    {
+        text: "/"
     }]
-
-    // listeners: {
-    //     select: 'onItemSelected'
-    // }
 });
