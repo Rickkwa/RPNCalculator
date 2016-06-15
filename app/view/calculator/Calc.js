@@ -85,15 +85,19 @@ Ext.define('CalculatorApp.view.calculator.Calc', {
         handler: "onEnter"
     },
     {
-        text: "+"
+        text: "+",
+        handler: "onOperator"
     }, 
     {
-        text: "-"
+        text: "-",
+        handler: "onOperator"
     },
     {
-        text: "X"
+        text: "X",
+        handler: "onOperator"
     },
     {
-        text: "/"
+        text: "/",
+        handler: "onOperator"
     }]
 });
