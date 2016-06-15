@@ -3,13 +3,15 @@
  */
 Ext.define('CalculatorApp.view.calculator.Calc', {
     extend: 'Ext.panel.Panel',
-    xtype: 'calc',
+    xtype: 'app-calc',
 
     requires: [
-        'CalculatorApp.view.calculator.CalcController'
+        'CalculatorApp.view.calculator.CalcController',
+        'CalculatorApp.view.calculator.CalcModel'
     ],
 
     controller: 'calc',
+    viewModel: 'calc',
 
     title: 'Reverse Polish Notation Calculator',
 
@@ -30,8 +32,10 @@ Ext.define('CalculatorApp.view.calculator.Calc', {
     },
 
     items: [{
-        xtype: 'displayfield',
-        value: 'test test test',
+        xtype: 'displayfield', // https://docs.sencha.com/extjs/6.0/6.0.1-classic/#!/api/Ext.form.field.Display
+        bind: {
+            value: '{displayValue}'
+        },
         fieldName: 'Result screen',
         name: 'calc_result',
         colspan: 3
@@ -75,7 +79,8 @@ Ext.define('CalculatorApp.view.calculator.Calc', {
     },
     {
         text: "Enter",
-        colspan: 2
+        colspan: 2,
+        handler: "onEnter"
     },
     {
         text: "+"

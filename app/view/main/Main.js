@@ -80,7 +80,7 @@ Ext.define('CalculatorApp.view.main.Main', {
         iconCls: 'fa-home',
         // The following grid shares a store with the classic version's grid as well!
         items: [{
-            xtype: 'calc'
+            xtype: 'app-calc'
         }]
     }, {
         title: 'Users',

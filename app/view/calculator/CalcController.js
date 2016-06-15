@@ -3,17 +3,14 @@ Ext.define('CalculatorApp.view.calculator.CalcController', {
 
     alias: 'controller.calc',
 
-    // onItemSelected: function (sender, record) {
-        // Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
-    // },
+    // model: "calc",
 
     onNumberInput: function(sender, record) {
-        Ext.Msg.confirm('Confirm', 'Are you sure?', 'onConfirm', this);
-    }
+        let viewModel = this.getViewModel();
+        viewModel.set('displayValue', viewModel.get('displayValue') + sender.text);
+    },
 
-    // onConfirm: function (choice) {
-    //     if (choice === 'yes') {
-    //         //
-    //     }
-    // }
+    onEnter: function () {
+        
+    }
 });
