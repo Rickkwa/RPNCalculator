@@ -30,7 +30,6 @@ Ext.define('CalculatorApp.view.calculator.CalcController', {
         // Get the textbox value, parse to number and append to stack
         var viewModel = this.getViewModel();
         this._stackPush(parseFloat(viewModel.get("displayValue")));
-        viewModel.set("displayValue", "0");
         this.didInput = false;
     },
 
