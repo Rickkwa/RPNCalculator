@@ -72,10 +72,12 @@ Ext.define('CalculatorApp.view.calculator.Calc', {
         text: '0'
     },
     {
-        text: '.'
+        text: '.',
+        handler: "onDecimal"
     }, 
     {
-        text: "C"
+        text: "C",
+        handler: "onClear"
     },
     {
         text: "Enter",

@@ -3,14 +3,25 @@ Ext.define('CalculatorApp.view.calculator.CalcController', {
 
     alias: 'controller.calc',
 
-    // model: "calc",
+    onNumberInput: function(el) {
+        var viewModel = this.getViewModel();
+        var newVal = (viewModel.get("displayValue") == "0") ? el.text : viewModel.get("displayValue") + el.text;
+        viewModel.set("displayValue", newVal);
+    },
 
-    onNumberInput: function(sender, record) {
-        let viewModel = this.getViewModel();
-        viewModel.set('displayValue', viewModel.get('displayValue') + sender.text);
+    onDecimal: function(el) {
+        var viewModel = this.getViewModel();
+        if (!viewModel.get("displayValue").includes("."))
+            viewModel.set("displayValue", viewModel.get("displayValue") + ".");
+    },
+
+    onClear: function(el) {
+        var viewModel = this.getViewModel();
+        viewModel.set("displayValue", "0");
+        // Reset stack
     },
 
     onEnter: function () {
-        
+        // Get the textbox value, parse to number and append to stack
     }
 });
