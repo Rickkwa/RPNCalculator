@@ -4,11 +4,13 @@ Ext.define('CalculatorApp.view.calculator.CalcController', {
     alias: 'controller.calc',
 
     stack: [],
+    didInput: false,
 
     onNumberInput: function(el) {
         var viewModel = this.getViewModel();
-        var newVal = (viewModel.get("displayValue") == "0") ? el.text : viewModel.get("displayValue") + el.text;
+        var newVal = (viewModel.get("displayValue") == "0" || !this.didInput) ? el.text : viewModel.get("displayValue") + el.text;
         viewModel.set("displayValue", newVal);
+        this.didInput = true;
     },
 
     onDecimal: function(el) {
@@ -21,6 +23,7 @@ Ext.define('CalculatorApp.view.calculator.CalcController', {
         var viewModel = this.getViewModel();
         viewModel.set("displayValue", "0");
         this._stackClear(); // Reset stack
+        this.didInput = false;
     },
 
     onEnter: function () {
@@ -28,11 +31,15 @@ Ext.define('CalculatorApp.view.calculator.CalcController', {
         var viewModel = this.getViewModel();
         this._stackPush(parseFloat(viewModel.get("displayValue")));
         viewModel.set("displayValue", "0");
+        this.didInput = false;
     },
 
     onOperator: function(el) {
-        // Figure out if we need to input current display into the stack
-        
+        var viewModel = this.getViewModel();
+
+        // Put current display into the stack
+        if (this.didInput)
+            this._stackPush(parseFloat(viewModel.get('displayValue')));
 
         // Grab the last 2 values from the stack and apply the operator
         var v1 = this._stackPop();
@@ -57,7 +64,8 @@ Ext.define('CalculatorApp.view.calculator.CalcController', {
 
         // Place result back into stack and display value
         this._stackPush(result);
-        this.getViewModel().set("displayValue", result);
+        viewModel.set("displayValue", result);
+        this.didInput = false;
     },
 
     _stackPop: function() {
