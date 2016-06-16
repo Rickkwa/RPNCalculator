@@ -8,15 +8,14 @@ Ext.define('CalculatorApp.view.calculator.CalcController', {
 
     onNumberInput: function(el) {
         var viewModel = this.getViewModel();
-        var newVal = (viewModel.get("displayValue") == "0" || !this.didInput) ? el.text : viewModel.get("displayValue") + el.text;
+        var newVal = "";
+
+        if (viewModel.get("displayValue") == "0" || !this.didInput)
+            newVal = el.text == "." ? "0" + el.text : el.text;
+        else
+            newVal = viewModel.get("displayValue") + el.text;
         viewModel.set("displayValue", newVal);
         this.didInput = true;
-    },
-
-    onDecimal: function(el) {
-        var viewModel = this.getViewModel();
-        if (!viewModel.get("displayValue").includes("."))
-            viewModel.set("displayValue", viewModel.get("displayValue") + ".");
     },
 
     onClear: function(el) {
@@ -31,6 +30,7 @@ Ext.define('CalculatorApp.view.calculator.CalcController', {
         var viewModel = this.getViewModel();
         this._stackPush(parseFloat(viewModel.get("displayValue")));
         this.didInput = false;
+        console.log(this.stack);
     },
 
     onOperator: function(el) {
@@ -65,6 +65,7 @@ Ext.define('CalculatorApp.view.calculator.CalcController', {
         this._stackPush(result);
         viewModel.set("displayValue", result);
         this.didInput = false;
+        console.log(this.stack);
     },
 
     _stackPop: function() {
