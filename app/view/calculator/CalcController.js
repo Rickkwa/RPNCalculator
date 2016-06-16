@@ -57,7 +57,7 @@ Ext.define('CalculatorApp.view.calculator.CalcController', {
                 result = v1 * v2;
                 break;
             case '/':
-                result = v2 / v1;
+                result = (v1 == 0) ? Infinity : v2 / v1;
                 break;
         }
 
