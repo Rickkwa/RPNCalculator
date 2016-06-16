@@ -36,6 +36,7 @@ Ext.define('CalculatorApp.view.calculator.Calc', {
         bind: {
             value: '{displayValue}'
         },
+        cls: "display-screen",
         fieldName: 'Result screen',
         name: 'calc_result',
         colspan: 3
@@ -76,27 +77,33 @@ Ext.define('CalculatorApp.view.calculator.Calc', {
     }, 
     {
         text: "C",
-        handler: "onClear"
+        handler: "onClear",
+        cls: "operator"
     },
     {
         text: "Enter",
         colspan: 2,
-        handler: "onEnter"
+        handler: "onEnter",
+        cls: "operator"
     },
     {
         text: "+",
-        handler: "onOperator"
+        handler: "onOperator",
+        cls: "operator"
     }, 
     {
         text: "-",
-        handler: "onOperator"
+        handler: "onOperator",
+        cls: "operator"
     },
     {
         text: "X",
-        handler: "onOperator"
+        handler: "onOperator",
+        cls: "operator"
     },
     {
         text: "/",
-        handler: "onOperator"
+        handler: "onOperator",
+        cls: "operator"
     }]
 });

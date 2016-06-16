@@ -1,0 +1,15 @@
+$fontSize: 32px;
+
+.display-screen {
+	text-align: right;
+}
+
+.display-screen * {
+	font-family: "Courier New";
+	font-size: $fontSize;
+	line-height: $fontSize;
+}
+
+.operator {
+	background-color: #0366c1;
+}
